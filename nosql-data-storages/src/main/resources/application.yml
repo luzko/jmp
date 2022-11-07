@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+
+spring:
+  couchbase:
+    cluster: jmp-cluster
+    username: jmp-admin
+    password: jmp-pass
+    connection-string: couchbase://localhost
+  data.couchbase:
+    bucket-name: users
+
+search.index.name: text-search
