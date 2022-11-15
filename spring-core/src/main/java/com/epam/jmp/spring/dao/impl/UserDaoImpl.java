@@ -14,13 +14,12 @@ import com.epam.jmp.spring.model.User;
 import com.epam.jmp.spring.model.to.UserTo;
 import com.epam.jmp.spring.storage.InMemoryStorage;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Repository
-@RequiredArgsConstructor
+@Setter
 public class UserDaoImpl implements UserDao {
-
-    private final InMemoryStorage inMemoryStorage;
+    private InMemoryStorage inMemoryStorage;
 
     @Override
     public User getById(long id) {

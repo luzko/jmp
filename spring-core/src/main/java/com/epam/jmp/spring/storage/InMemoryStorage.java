@@ -14,15 +14,13 @@ import com.epam.jmp.spring.model.Base;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Data
-@RequiredArgsConstructor
+@Setter
 public class InMemoryStorage {
-    private final ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     private final ConcurrentHashMap<String, List<? extends Base>> storage = new ConcurrentHashMap<>();
 

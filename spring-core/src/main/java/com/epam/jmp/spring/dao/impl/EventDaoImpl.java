@@ -15,12 +15,12 @@ import com.epam.jmp.spring.model.Event;
 import com.epam.jmp.spring.model.to.EventTo;
 import com.epam.jmp.spring.storage.InMemoryStorage;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Repository
-@RequiredArgsConstructor
+@Setter
 public class EventDaoImpl implements EventDao {
-    private final InMemoryStorage inMemoryStorage;
+    private InMemoryStorage inMemoryStorage;
 
     @Override
     public Event getById(long id) {

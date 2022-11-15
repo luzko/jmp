@@ -11,25 +11,15 @@ import com.epam.jmp.spring.model.to.TicketTo;
 import com.epam.jmp.spring.model.to.UserTo;
 import com.epam.jmp.spring.storage.InMemoryStorage;
 
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Setter
 public class CustomBeanPostProcessor implements BeanPostProcessor {
     private String userDataPath;
     private String ticketDataPath;
     private String eventDataPath;
-
-    public void setUserDataPath(String userDataPath) {
-        this.userDataPath = userDataPath;
-    }
-
-    public void setTicketDataPath(String ticketDataPath) {
-        this.ticketDataPath = ticketDataPath;
-    }
-
-    public void setEventDataPath(String eventDataPath) {
-        this.eventDataPath = eventDataPath;
-    }
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

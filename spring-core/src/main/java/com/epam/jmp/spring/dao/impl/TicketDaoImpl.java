@@ -13,12 +13,12 @@ import com.epam.jmp.spring.model.User;
 import com.epam.jmp.spring.model.to.TicketTo;
 import com.epam.jmp.spring.storage.InMemoryStorage;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Repository
-@RequiredArgsConstructor
+@Setter
 public class TicketDaoImpl implements TicketDao {
-    private final InMemoryStorage inMemoryStorage;
+    private InMemoryStorage inMemoryStorage;
 
     @Override
     public Ticket bookTicket(long userId, long eventId, int place, Ticket.Category category) {

@@ -9,7 +9,9 @@
     <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
     <!-- storage -->
     <bean id="storage" class="com.epam.jmp.spring.storage.InMemoryStorage">
-        <constructor-arg ref="objectMapper"/>
+        <property name="mapper">
+            <ref bean="objectMapper"/>
+        </property>
     </bean>
     <!--custom bean post processor-->
     <!--use "p" namespace-->
@@ -18,24 +20,24 @@
     />
     <!-- dao -->
     <bean id="userDao" class="com.epam.jmp.spring.dao.impl.UserDaoImpl">
-        <constructor-arg ref="storage"/>
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
     </bean>
     <bean id="eventDao" class="com.epam.jmp.spring.dao.impl.EventDaoImpl">
-        <constructor-arg ref="storage"/>
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
     </bean>
     <bean id="ticketDao" class="com.epam.jmp.spring.dao.impl.TicketDaoImpl">
-        <constructor-arg ref="storage"/>
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
     </bean>
     <!-- service -->
-    <bean id="userService" class="com.epam.jmp.spring.service.impl.UserServiceImpl">
-        <constructor-arg ref="userDao"/>
-    </bean>
-    <bean id="eventService" class="com.epam.jmp.spring.service.impl.EventServiceImpl">
-        <constructor-arg ref="eventDao"/>
-    </bean>
-    <bean id="ticketService" class="com.epam.jmp.spring.service.impl.TicketServiceImpl">
-        <constructor-arg ref="ticketDao"/>
-    </bean>
+    <bean id="userService" class="com.epam.jmp.spring.service.impl.UserServiceImpl" autowire="byType"/>
+    <bean id="eventService" class="com.epam.jmp.spring.service.impl.EventServiceImpl" autowire="byType"/>
+    <bean id="ticketService" class="com.epam.jmp.spring.service.impl.TicketServiceImpl" autowire="byType"/>
     <!-- facade -->
     <bean id="bookingFacade" class="com.epam.jmp.spring.facade.impl.BookingFacadeImpl">
         <constructor-arg name="eventService" ref="eventService"/>
