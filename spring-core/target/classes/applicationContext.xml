@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <!-- storage -->
+    <bean id="storage" class="com.epam.jmp.spring.storage.InMemoryStorage">
+        <property name="mapper">
+            <ref bean="objectMapper"/>
+        </property>
+    </bean>
+    <!--custom bean post processor-->
+    <!--use "p" namespace-->
+    <bean id="CustomBeanPostProcessor" class="com.epam.jmp.spring.util.CustomBeanPostProcessor"
+          p:userDataPath="${user.data.path}" p:ticketDataPath="${ticket.data.path}" p:eventDataPath="${event.data.path}"
+    />
+    <!-- dao -->
+    <bean id="userDao" class="com.epam.jmp.spring.dao.impl.UserDaoImpl">
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
+    </bean>
+    <bean id="eventDao" class="com.epam.jmp.spring.dao.impl.EventDaoImpl">
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
+    </bean>
+    <bean id="ticketDao" class="com.epam.jmp.spring.dao.impl.TicketDaoImpl">
+        <property name="inMemoryStorage">
+            <ref bean="storage"/>
+        </property>
+    </bean>
+    <!-- service -->
+    <bean id="userService" class="com.epam.jmp.spring.service.impl.UserServiceImpl" autowire="byType"/>
+    <bean id="eventService" class="com.epam.jmp.spring.service.impl.EventServiceImpl" autowire="byType"/>
+    <bean id="ticketService" class="com.epam.jmp.spring.service.impl.TicketServiceImpl" autowire="byType"/>
+    <!-- facade -->
+    <bean id="bookingFacade" class="com.epam.jmp.spring.facade.impl.BookingFacadeImpl">
+        <constructor-arg name="eventService" ref="eventService"/>
+        <constructor-arg name="userService" ref="userService"/>
+        <constructor-arg name="ticketService" ref="ticketService"/>
+    </bean>
+
+    <context:property-placeholder location="classpath:application.properties"/>
+</beans>

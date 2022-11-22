@@ -1,0 +1,5 @@
+{"id":1, "eventId":1 , "userId":1, "place":101, "category":"STANDARD"}
+{"id":2, "eventId":2, "userId":2, "place":102, "category":"STANDARD"}
+{"id":3, "eventId":3, "userId":3, "place":103, "category":"PREMIUM"}
+{"id":4, "eventId":4, "userId":4, "place":104, "category":"PREMIUM"}
+{"id":5, "eventId":5, "userId":5, "place":105, "category":"BAR"}
