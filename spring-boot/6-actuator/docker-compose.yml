@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  actuator:
+    build: .
+    ports:
+      - "8090:8090"
+    depends_on:
+      - prometheus
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
