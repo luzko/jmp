@@ -11,7 +11,7 @@ public class TemplateEngineTest {
     public void generateMessageFromPlainText() {
         String expected = "test";
         TemplateEngine templateEngine = new TemplateEngine();
-        String actual = templateEngine.generateMessage(new Template(), new Client());
+        String actual = templateEngine.generateMessage(new Template(expected), new Client());
         assertEquals(expected, actual);
     }
 }
