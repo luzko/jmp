@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import com.epam.ld.module2.testing.exception.ParameterArgumentException;
+
 class ModeHelperTest {
     @Test
     public void consoleModeTest() {
