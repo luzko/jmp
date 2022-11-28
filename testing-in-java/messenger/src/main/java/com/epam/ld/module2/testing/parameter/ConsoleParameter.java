@@ -6,7 +6,11 @@ import java.util.Scanner;
 
 public class ConsoleParameter implements Parameter {
     private String template;
-    private Map<String, String> parameters;
+    private final Map<String, String> parameters;
+
+    ConsoleParameter() {
+        this.parameters = new HashMap<>();
+    }
 
     @Override
     public void read() {
@@ -14,7 +18,6 @@ public class ConsoleParameter implements Parameter {
         Scanner scanner = new Scanner(System.in);
         template = scanner.nextLine();
         System.out.format("Parameters for template, to end '%s'%n", "-end-");
-        parameters = new HashMap<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.equals("-end-")) {
