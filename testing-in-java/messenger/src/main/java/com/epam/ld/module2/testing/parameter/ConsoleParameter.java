@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleParameter implements Parameter {
-    private String template;-
+    private String template;
     private Map<String, String> parameters;
 
     @Override
