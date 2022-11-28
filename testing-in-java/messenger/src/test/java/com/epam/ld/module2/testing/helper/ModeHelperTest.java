@@ -8,8 +8,7 @@ class ModeHelperTest {
     @Test
     public void consoleModeTest() {
         String[] args = new String[0];
-        ModeHelper modeHelper = new ModeHelper(args);
-        Mode actual = modeHelper.getMode();
+        Mode actual = ModeHelper.getMode(args);
         assertEquals(Mode.CONSOLE, actual);
     }
 
@@ -20,8 +19,7 @@ class ModeHelperTest {
                 "parameters", "parameters.txt",
                 "output", "output.txt",
         };
-        ModeHelper modeHelper = new ModeHelper(args);
-        Mode actual = modeHelper.getMode();
-        assertEquals(Mode.File, actual);
+        Mode actual = ModeHelper.getMode(args);
+        assertEquals(Mode.FILE, actual);
     }
 }
