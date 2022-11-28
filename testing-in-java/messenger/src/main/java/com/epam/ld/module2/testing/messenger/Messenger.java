@@ -1,5 +1,7 @@
-package com.epam.ld.module2.testing;
+package com.epam.ld.module2.testing.messenger;
 
+import com.epam.ld.module2.testing.client.Client;
+import com.epam.ld.module2.testing.mail.MailServer;
 import com.epam.ld.module2.testing.template.Template;
 import com.epam.ld.module2.testing.template.TemplateEngine;
 

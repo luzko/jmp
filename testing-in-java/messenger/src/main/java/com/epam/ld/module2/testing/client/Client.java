@@ -1,4 +1,4 @@
-package com.epam.ld.module2.testing;
+package com.epam.ld.module2.testing.client;
 
 import java.util.HashMap;
 import java.util.Map;

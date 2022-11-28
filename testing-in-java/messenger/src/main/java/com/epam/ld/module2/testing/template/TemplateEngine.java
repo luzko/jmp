@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.epam.ld.module2.testing.Client;
+import com.epam.ld.module2.testing.client.Client;
 import com.epam.ld.module2.testing.exception.InvalidDataException;
 
 /**

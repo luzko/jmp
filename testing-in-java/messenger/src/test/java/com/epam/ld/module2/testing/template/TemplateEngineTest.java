@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import com.epam.ld.module2.testing.Client;
+import com.epam.ld.module2.testing.client.Client;
 import com.epam.ld.module2.testing.exception.InvalidDataException;
 
 public class TemplateEngineTest {
