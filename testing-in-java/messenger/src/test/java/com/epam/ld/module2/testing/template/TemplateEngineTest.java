@@ -3,6 +3,7 @@ package com.epam.ld.module2.testing.template;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,6 +93,21 @@ public class TemplateEngineTest {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user", "Dzmitry");
         parameters.put("date", "2022-11-11");
+        Template template = new Template(text);
+        Client client = new Client(addresses, parameters);
+        TemplateEngine templateEngine = new TemplateEngine();
+        String actual = templateEngine.generateMessage(template, client);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void generateMessageForLatin1CharsetInVariablesAndTemplate() {
+        String textTemplate = "#{user} ýøû balance is low, please top up your balance.";
+        String text = new String(textTemplate.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.ISO_8859_1);
+        String expected = "ßër ýøû balance is low, please top up your balance.";
+        String addresses = "user1@gmail.com";
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("user", "ßër");
         Template template = new Template(text);
         Client client = new Client(addresses, parameters);
         TemplateEngine templateEngine = new TemplateEngine();
