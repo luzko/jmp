@@ -1,11 +1,7 @@
 package com.epam.ld.module2.testing.exception;
 
 public class InvalidDataException extends RuntimeException {
-    private String message;
-
-    public InvalidDataException() {
-
-    }
+    private final String message;
 
     public InvalidDataException(String message) {
         this.message = message;

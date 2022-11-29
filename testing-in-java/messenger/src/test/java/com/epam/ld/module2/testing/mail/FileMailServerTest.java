@@ -20,10 +20,8 @@ class FileMailServerTest {
     @Test
     public void sendFileTest(@TempDir Path tempDir) throws IOException {
         Path output = tempDir.resolve("file");
-        String addresses = "test@gmail.com";
-        String message = "text";
         MailServer mailServer = new FileMailServer(output);
-        mailServer.send(addresses, message);
+        mailServer.send("test@gmail.com", "text");
         assertTrue(Files.exists(output));
         List<String> expected = Arrays.asList("test@gmail.com", "text");
         List<String> actual = Files.readAllLines(output);
@@ -33,9 +31,7 @@ class FileMailServerTest {
     @Test
     public void sendFileMailFileExceptionTest() {
         Path output = mock(Path.class);
-        String addresses = "test@gmail.com";
-        String message = "text";
         MailServer mailServer = new FileMailServer(output);
-        assertThrows(MailFileException.class, () -> mailServer.send(addresses, message));
+        assertThrows(MailFileException.class, () -> mailServer.send("test@gmail.com", "text"));
     }
 }

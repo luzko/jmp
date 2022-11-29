@@ -9,8 +9,8 @@ import com.epam.ld.module2.testing.template.TemplateEngine;
  * The type Messenger.
  */
 public class Messenger {
-    private MailServer mailServer;
-    private TemplateEngine templateEngine;
+    private final MailServer mailServer;
+    private final TemplateEngine templateEngine;
 
     /**
      * Instantiates a new Messenger.

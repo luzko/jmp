@@ -7,8 +7,8 @@ import java.util.Map;
  * The type Client.
  */
 public class Client {
-    private String addresses;
-    private Map<String, String> parameters;
+    private final String addresses;
+    private final Map<String, String> parameters;
 
     public Client(String addresses) {
         this.addresses = addresses;
@@ -26,13 +26,5 @@ public class Client {
 
     public Map<String, String> getParameters() {
         return parameters;
-    }
-
-    public void setAddresses(String addresses) {
-        this.addresses = addresses;
-    }
-
-    public void setParameters(Map<String, String> parameters) {
-        this.parameters = parameters;
     }
 }

@@ -1,11 +1,7 @@
 package com.epam.ld.module2.testing.exception;
 
 public class MailFileException extends RuntimeException {
-    private String message;
-
-    public MailFileException() {
-
-    }
+    private final String message;
 
     public MailFileException(String message) {
         this.message = message;

@@ -11,11 +11,9 @@ class ConsoleMailServerTest {
     @Test
     void sendConsoleTest() {
         MailServer mailServer = new ConsoleMailServer();
-        String addresses = "some@example.com";
-        String messageText = "text";
         PrintStream stream = mock(PrintStream.class);
         System.setOut(stream);
-        mailServer.send(addresses, messageText);
+        mailServer.send("some@example.com", "text");
         verify(stream).format("%s%n%s", "some@example.com", "text");
     }
 }

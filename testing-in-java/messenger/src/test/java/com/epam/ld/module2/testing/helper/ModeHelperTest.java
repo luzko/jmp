@@ -17,7 +17,9 @@ class ModeHelperTest {
     @Test
     public void fileModeTest() {
         Mode actual = ModeHelper.getMode(
-                new String[] {"template", "template.txt", "parameters", "parameters.txt", "output", "output.txt"});
+                new String[] {
+                        "template", "template.txt", "parameters", "parameters.txt", "output", "console-output.txt"
+                });
         assertEquals(Mode.FILE, actual);
     }
 
