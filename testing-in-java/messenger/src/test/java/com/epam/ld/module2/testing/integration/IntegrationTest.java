@@ -9,6 +9,8 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
+import com.epam.ld.module2.testing.Main;
+
 public class IntegrationTest {
     @Test
     public void consoleModeTest() {
