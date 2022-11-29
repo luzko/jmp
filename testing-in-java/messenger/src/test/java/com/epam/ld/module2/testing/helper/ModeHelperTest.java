@@ -19,12 +19,10 @@ class ModeHelperTest {
         assertEquals(Mode.CONSOLE, actual);
     }
 
-    @Test
-    public void fileModeTest() {
-        Mode actual = ModeHelper.getMode(
-                new String[] {
-                        "template", "template.txt", "parameters", "parameters.txt", "output", "console-output.txt"
-                });
+    @ParameterizedTest
+    @MethodSource("argumentsName")
+    public void fileModeTest(String[] args) {
+        Mode actual = ModeHelper.getMode(args);
         assertEquals(Mode.FILE, actual);
     }
 
@@ -36,9 +34,16 @@ class ModeHelperTest {
 
     @ParameterizedTest
     @MethodSource("wrongArgumentsName")
-    public void incorrectParameterArgumentExceptionTest() {
+    public void incorrectParameterArgumentExceptionTest(String[] args) {
         assertThrows(ParameterArgumentException.class,
-                () -> ModeHelper.getMode(new String[] {"param1", "value1", "param2", "value2", "param3", "value3"}));
+                () -> ModeHelper.getMode(args));
+    }
+
+    private static Stream<Arguments> argumentsName() {
+        return Stream.of(
+                Arguments.of((Object) new String[] {"template", "path1", "parameters", "path2", "output", "path3"}),
+                Arguments.of((Object) new String[] {"template", "path4", "parameters", "path5", "output", "path6"})
+        );
     }
 
     private static Stream<Arguments> wrongArgumentsNumber() {
@@ -50,8 +55,8 @@ class ModeHelperTest {
 
     private static Stream<Arguments> wrongArgumentsName() {
         return Stream.of(
-                Arguments.of((Object) new String[] {"template", "path1", "parameters", "path2", "output", "path3"}),
-                Arguments.of((Object) new String[] {"template", "path4", "parameters", "path5", "output", "path6"})
+                Arguments.of((Object) new String[] {"template1", "path1", "parameters1", "path2", "output1", "path3"}),
+                Arguments.of((Object) new String[] {"template2", "path4", "parameters2", "path5", "output2", "path6"})
         );
     }
 }

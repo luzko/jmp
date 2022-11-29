@@ -4,12 +4,18 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'com.bmuschko.clover' version "2.2.5"
-    id 'com.github.spotbugs' version "4.2.2"
 }
 
 repositories {
     mavenCentral()
 }
+
+compiler {
+    encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
 //-----------------------------BASE CONFIGURATION--------------------------------------------
 clover {
 
@@ -54,15 +60,6 @@ checkstyle {
 }
 
 check.dependsOn cloverGenerateReport
-
-spotbugsMain {
-    reports {
-        html {
-            enabled = true
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
-}
 
 pmd {
     ignoreFailures = true
