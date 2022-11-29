@@ -8,11 +8,13 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 
 import com.epam.ld.module2.testing.Main;
 
 public class IntegrationTest {
     @Test
+    @DisabledIfSystemProperty(named = "prop", matches = "true")
     public void consoleModeTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File input = new File(Objects.requireNonNull(classLoader.getResource("input.txt")).getFile());
@@ -28,6 +30,7 @@ public class IntegrationTest {
     }
 
     @Test
+    @DisabledIfSystemProperty(named = "prop", matches = "true")
     public void fileModeTest() {
         ClassLoader classLoader = getClass().getClassLoader();
         File template = new File(Objects.requireNonNull(classLoader.getResource("template.txt")).getFile());
