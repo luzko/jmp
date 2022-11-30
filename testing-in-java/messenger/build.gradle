@@ -29,7 +29,7 @@ clover {
         pdf = true
 
         columns {
-            coveredMethods format: 'longbar', min: '75'
+            coveredMethods format: 'longbar', min: '90'
             coveredStatements format: '%'
             coveredBranches format: 'raw'
             totalPercentageCovered format: '%', scope: 'package'

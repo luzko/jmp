@@ -18,11 +18,13 @@ class TemplateEngineDynamicTest {
     Stream<DynamicTest> templateEngineHappyPath() {
         List<String> templates = new ArrayList<>();
         templates.add("#{user} #{date}");
-        templates.add("#{date} #{user}");
+        templates.add("#{car} #{model}");
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("user", "param");
         parameters.put("date", "param");
+        parameters.put("car", "param");
+        parameters.put("model", "param");
 
         return templates.stream()
                 .map(template -> DynamicTest.dynamicTest("Template: " + template,

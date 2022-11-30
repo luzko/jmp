@@ -9,14 +9,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.epam.ld.module2.testing.client.Client;
 import com.epam.ld.module2.testing.mail.MailServer;
 import com.epam.ld.module2.testing.template.Template;
 import com.epam.ld.module2.testing.template.TemplateEngine;
+import com.epam.ld.module2.testing.util.TestResultInFileRunnerExtension;
 
 public class MessengerTest {
     @Test
+    @ExtendWith(TestResultInFileRunnerExtension.class)
     public void sendMessageSpyTest() {
         MailServer mailServer = mock(MailServer.class);
         TemplateEngine templateEngine = spy(TemplateEngine.class);
@@ -29,6 +32,7 @@ public class MessengerTest {
     }
 
     @Test
+    @ExtendWith(TestResultInFileRunnerExtension.class)
     public void sendMessagePartialMockTest() {
         MailServer mailServer = mock(MailServer.class);
         TemplateEngine templateEngine = new TemplateEngine();
