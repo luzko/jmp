@@ -1,0 +1,3 @@
+Dear #{user}, the #{date} is your day!
+user=Dzmitry
+date=2022-11-11

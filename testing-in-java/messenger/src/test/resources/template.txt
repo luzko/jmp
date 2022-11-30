@@ -1,0 +1,1 @@
+Dear #{user}, the #{date} is your day!
