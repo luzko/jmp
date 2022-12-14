@@ -1,0 +1,18 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+graphite:
+  address: http://graphite:2003
+
+config-server:
+  address: http://config-server:8090
+service-two:
+  address: http://two:8092
+
+spring:
+  zipkin:
+    baseUrl: http://zipkin:9411
