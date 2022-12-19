@@ -1,0 +1,22 @@
+server:
+  port: 8099
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: apigateway
+
+zuul:
+  routes:
+    service-one:
+      url: http://localhost:8092
+    service-two:
+      url: http://localhost:8093

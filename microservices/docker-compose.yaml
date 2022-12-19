@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "2003-2004:2003-2004"
+      - "8080:8080"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
+
+  discovery:
+    build: ./platform-services/discovery/target
+    ports:
+      - "8761:8761"
+    expose:
+      - "8761"
+
+  apigateway:
+    build: ./platform-services/apigateway/target
+    ports:
+      - "8099:8099"
+    links:
+      - discovery
+      - one-server
+      - two-server
+      - zipkin
+
+  common-server:
+    build: ./business-services/common/target
+    ports:
+      - "8090:8090"
+
+  one-server:
+    build: ./business-services/one/target
+    ports:
+      - "8091:8091"
+    links:
+      - discovery
+      - common-server
+      - zipkin
+      - graphite
+
+  two-server:
+    build: ./business-services/two/target
+    ports:
+      - "8092:8092"
+    links:
+      - discovery
+      - common-server
+      - zipkin
+      - graphite
