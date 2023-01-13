@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-petclinic
+  labels:
+    jamp: spring-petclinic
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      jamp: spring-petclinic
+  template:
+    metadata:
+      labels:
+        jamp: spring-petclinic
+    spec:
+      containers:
+        - name: spring-petclinic
+          image: localhost:9999/petclinic:latest
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: app-config
+              mountPath: /application.yaml
+              subPath: application.yaml
+              readOnly: true
+      volumes:
+        - name: app-config
+          configMap:
+            name: spring-petclinic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-petclinic
+  labels:
+    jamp: spring-petclinic
+spec:
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    jamp: spring-petclinic
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-petclinic
+  labels:
+    jamp: spring-petclinic
+data:
+  application.yaml: |
+    server:
+      port: 8080
